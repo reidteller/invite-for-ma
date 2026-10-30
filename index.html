@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Convite Especial</title>
+  <title>Convite de um Dia Especial</title>
 
   <style>
     * {
@@ -267,7 +267,7 @@
     <section class="screen" id="welcomeScreen">
       <div class="emoji">💌</div>
 
-      <h1>Você recebeu um convite!</h1>
+      <h1>Você recebeu um convite irrecusável!</h1>
 
       <p class="subtitle">
         Existe um momento especial esperando por você.
@@ -276,7 +276,7 @@
       <p>Você aceita participar?</p>
 
       <div class="btn-group">
-        <button id="yesButton">Sim, eu aceito! 💖</button>
+        <button id="yesButton">Sim, eu aceito MA! 💖</button>
         <button id="noButton">Não</button>
       </div>
     </section>
@@ -284,7 +284,7 @@
     <section class="screen hidden" id="detailsScreen">
       <div class="emoji">🥰</div>
 
-      <h2>Sabia que você diria sim!</h2>
+      <h2>Sabia que não recusaria mb!</h2>
 
       <p class="subtitle">
         Prepare-se para viver um momento inesquecível.
@@ -293,22 +293,22 @@
       <div class="details">
         <div class="detail-card">
           <strong>Ocasião</strong>
-          <span id="eventName">Um encontro especial</span>
+          <span id="eventName">Lagoa/Botafogo</span>
         </div>
 
         <div class="detail-card">
           <strong>Data</strong>
-          <span id="eventDate">01 de outubro de 2026</span>
+          <span id="eventDate">06 de novembro de 2026</span>
         </div>
 
         <div class="detail-card">
           <strong>Horário</strong>
-          <span id="eventTime">17h30</span>
+          <span id="eventTime">12h30</span>
         </div>
 
         <div class="detail-card">
           <strong>Local</strong>
-          <span id="eventLocation">Local do evento</span>
+          <span id="eventLocation">Encontro em Sepetiba City</span>
         </div>
       </div>
 
@@ -352,11 +352,11 @@
 
   <script>
     const invitation = {
-      eventName: "Brincadeira e Bate papo",
-      eventDate: "01 de outubro de 2026",
-      eventTime: "17h30",
-      eventLocation: "Park Shopping ou Barra Shopping",
-      targetDate: new Date(2026, 9, 1, 17, 30, 0),
+      eventName: "Dia Especial e inesquecível",
+      eventDate: "06 de novembro de 2026",
+      eventTime: "12h30",
+      eventLocation: "Lagoa/Botafogo",
+      targetDate: new Date(2026, 11, 6, 12, 30, 0),
       whatsapp: "5521996378757"
     };
 
@@ -378,7 +378,7 @@
     eventLocation.textContent = invitation.eventLocation;
 
     const whatsappMessage = encodeURIComponent(
-      `Olá! Eu confirmo minha presença no evento "${invitation.eventName}", no dia ${invitation.eventDate}.`
+      `Oii ma! Eu confirmo minha presença no evento "${invitation.eventName}" love u.`
     );
 
     confirmButton.href = `https://wa.me/${invitation.whatsapp}?text=${whatsappMessage}`;
