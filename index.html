@@ -100,7 +100,9 @@
       margin-top: 24px;
       position: relative;
       width: 100%;
+      min-height: 60px;
       justify-content: center;
+      align-items: flex-start;
     }
 
     button,
@@ -204,46 +206,24 @@
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.08);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-760px) rotate(360deg);
-        opacity: 0;
-      }
+      from { transform: translateY(0) rotate(0deg); opacity: 1; }
+      to { transform: translateY(-760px) rotate(360deg); opacity: 0; }
     }
 
     @keyframes shake {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      25% {
-        transform: translateX(-6px);
-      }
-      75% {
-        transform: translateX(6px);
-      }
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
     }
 
     @media (max-width: 400px) {
@@ -308,7 +288,7 @@
 
         <div class="detail-card">
           <strong>Local</strong>
-          <span id="eventLocation">Lagoa/Botafogo</span>
+          <span id="eventLocation">Encontro em Sepetiba City, depois Lagoa/Botafogo</span>
         </div>
       </div>
 
@@ -352,19 +332,18 @@
 
   <script>
     const invitation = {
-  eventName: "Tarde de bate papo e jantar",
-  eventTime: "12h30",
-  eventLocation: "Lagoa/Botafogo",
-  targetDate: new Date(2026, 10, 6, 12, 30, 0),
-  whatsapp: "5521996378757"
-};
-
-invitation.eventDate = invitation.targetDate.toLocaleDateString("pt-BR", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric"
-}); // "06 de novembro de 2026"
+      eventName: "Tarde de bate papo e jantar",
+      eventTime: "12h30",
+      eventLocation: "Encontro em Sepetiba City, depois Lagoa/Botafogo",
+      targetDate: new Date(2026, 10, 6, 12, 30, 0), // mês 10 = novembro
+      whatsapp: "5521996378757"
     };
+
+    invitation.eventDate = invitation.targetDate.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    }); // "06 de novembro de 2026"
 
     const phone = document.getElementById("phone");
     const welcomeScreen = document.getElementById("welcomeScreen");
@@ -397,7 +376,7 @@ invitation.eventDate = invitation.targetDate.toLocaleDateString("pt-BR", {
     });
 
     noButton.addEventListener("mouseenter", moveNoButton);
-    noButton.addEventListener("touchstart", moveNoButton);
+    noButton.addEventListener("touchstart", moveNoButton, { passive: false });
 
     function moveNoButton(event) {
       event.preventDefault();
@@ -444,15 +423,18 @@ invitation.eventDate = invitation.targetDate.toLocaleDateString("pt-BR", {
       const now = new Date().getTime();
       const distance = invitation.targetDate.getTime() - now;
 
-     if (distance <= 0) {
-  ["days", "hours", "minutes", "seconds"].forEach(id => {
-    document.getElementById(id).textContent = "00";
-  });
-  document.querySelector(".countdown").insertAdjacentHTML(
-    "afterend",
-    "<p class='confirmation'>Hoje é o grande dia! 🎉</p>"
-  );
-  return;
+      if (distance <= 0) {
+        ["days", "hours", "minutes", "seconds"].forEach(id => {
+          document.getElementById(id).textContent = "00";
+        });
+
+        if (!document.getElementById("bigDay")) {
+          document.querySelector(".countdown").insertAdjacentHTML(
+            "afterend",
+            "<p class='confirmation' id='bigDay'>Hoje é o grande dia! 🎉</p>"
+          );
+        }
+        return;
       }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
