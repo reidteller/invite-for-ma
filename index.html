@@ -352,12 +352,18 @@
 
   <script>
     const invitation = {
-      eventName: "Dia Especial e inesquecível",
-      eventDate: "06 de novembro de 2026",
-      eventTime: "12h30",
-      eventLocation: "Lagoa/Botafogo",
-      targetDate: new Date(2026, 10, 6, 12, 30, 0),
-      whatsapp: "5521996378757"
+  eventName: "Dia Especial e inesquecível",
+  eventTime: "12h30",
+  eventLocation: "Lagoa/Botafogo",
+  targetDate: new Date(2026, 10, 6, 12, 30, 0),
+  whatsapp: "5521996378757"
+};
+
+invitation.eventDate = invitation.targetDate.toLocaleDateString("pt-BR", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric"
+}); // "06 de novembro de 2026"
     };
 
     const phone = document.getElementById("phone");
